@@ -9,22 +9,36 @@ const client = new Mistral({ apiKey: mistralApiKey });
 
 async function main() {
 
+    const messages = []
 
-    const chatResponse = await client.beta.complete({
-        model: 'mistral-medium-latest',
-        messages: [
-            {
-                role:"system",
-                content:`You are an AI assistant named Jarvis. Always introduce yourself as Jarvis. you help users with answer questions`,
-            },
-            { 
-                role: 'user', 
-                content: 'who are you?' 
-            }
-        ],
+    messages.push({
+        role: "system",
+        content: "You are Jarvis. you are an assistant. Your job is to provide information. Talk to the user politely"
+    })
+
+    messages.push({
+        role: "user",
+        content: "my name is Arup."
+    })
+
+    messages.push({
+        role: "user",
+        content: "Who are you."
+    })
+
+    
+
+    const chatResponse = await client.chat.complete({
+        model: 'mistral-small-latest',
+        messages
     });
 
     const answer = chatResponse.choices[0].message.content;
+
+    messages.push({
+        role: "assistant",
+        content: answer
+    })
 
     console.log("🤖 Jarvis: ", answer)
 }
