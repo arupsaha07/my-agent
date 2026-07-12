@@ -1,0 +1,15 @@
+{
+  "name": "My Agent",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type":"module",
+  "scripts": {
+    "dev": "node --watch index.js"
+  },
+  "author": "Arup Saha",
+  "description": "This is a custom build agent created with javascript and agent SDK",
+  "dependencies": {
+    "@mistralai/mistralai": "^2.4.1",
+    "dotenv": "^17.4.2"
+  }
+}
