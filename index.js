@@ -1,10 +1,5 @@
-import { Mistral } from '@mistralai/mistralai';
-import dotenv from "dotenv";
 
-dotenv.config();
 
-const mistralApiKey = process.env.MISTRAL_API_KEY;
-const client = new Mistral({ apiKey: mistralApiKey });
 
 
 async function main() {
@@ -13,7 +8,10 @@ async function main() {
 
     messages.push({
         role: "system",
-        content: "You are Jarvis. you are an assistant. Your job is to provide information. Talk to the user politely"
+        content: `You are Jarvis. 
+        you are an assistant. 
+        Your job is to provide information only. 
+        Communicate with very friendly tone`
     })
 
     messages.push({
@@ -25,8 +23,6 @@ async function main() {
         role: "user",
         content: "Who are you."
     })
-
-    
 
     const chatResponse = await client.chat.complete({
         model: 'mistral-small-latest',
